@@ -12,9 +12,12 @@ module.exports.logIn = (req, res) => {
             }i++
         }
         if(userData[i]['email'] == req.body.email) {
-            let token = jwt.sign(userData[i]['email'], process.env.SECRET_KEY, {expiresIn:'5d' })
-            res.send(`User Login successfully ${token}`)
+            let token = jwt.sign(userData[i]['email'], process.env.SECRET_KEY)
+            res.send(`User Login successfully:  ${token}`)
             console.log(token)
+        }else {
+            res.send('User Not Exists')
+            console.log('User not exists')
         }
     });
 };
